@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "fcd3bfff-0e91-42d3-8757-c076bdb33bf3",
+		"name": "shopping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "验证手机号",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dd19ee3-d3f6-487b-8017-ee7e59171bd5",
+						"exec": [
+							"pm.test(\"断言响应message返回null\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(null);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/user/mobileIsUse?mobile=18807022224",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"user",
+						"mobileIsUse"
+					],
+					"query": [
+						{
+							"key": "mobile",
+							"value": "18807022224"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取省",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "791202de-9d34-421f-9d29-b29951924ea2",
+						"exec": [
+							"pm.test(\"断言响应data返回全国所有的省\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"江西省\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/order/getProvinceList",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"order",
+						"getProvinceList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取市",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b0d5c5e3-efae-45aa-81f6-b5f278de3c1c",
+						"exec": [
+							"pm.test(\"断言响应data返回该省所有的市\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"九江市\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/order/getCityList?provinceName=江西省",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"order",
+						"getCityList"
+					],
+					"query": [
+						{
+							"key": "provinceName",
+							"value": "江西省"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取区县",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "22337d44-2ffa-41aa-ae1b-27f280235ff0",
+						"exec": [
+							"pm.test(\"断言响应data返回该市所有的区县\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"都昌县\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/order/getCountyList?cityName=九江市",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"order",
+						"getCountyList"
+					],
+					"query": [
+						{
+							"key": "cityName",
+							"value": "九江市"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取街道",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09e997f2-0040-42ee-8ce6-8fb1c67a61dc",
+						"exec": [
+							"pm.test(\"断言响应data返回该区县所有的街道\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"蔡岭镇\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/order/getStreetList?countryName=都昌县",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"order",
+						"getStreetList"
+					],
+					"query": [
+						{
+							"key": "countryName",
+							"value": "都昌县"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "注册用户信息",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "676613d2-ab5b-45aa-b9b7-b44e0e0132a3",
+						"exec": [
+							"pm.test(\"断言响应返回message为注册成功\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"注册成功\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/user/regist?mobile=18807022224&appId=1234567890&openId=1234567890&headImage=http://thirdwx.qlogo.cn/mmopen/aVw4FZwqoeJSDVH5icmqCt4LTiaOnibnN8FCg0oZ3W5McXJA6hutGj29HpozgZAInDRmI5UXibLXibuFz6bA6ueO5Xk4vpgDTbaa5/132&nickName=王者荣耀&province=江西省&city=九江市&district=都昌县&street=蔡岭镇&addressDetail=慈济中学&receivingNumber=18357477862&receivingName=刘云凤",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"user",
+						"regist"
+					],
+					"query": [
+						{
+							"key": "mobile",
+							"value": "18807022224"
+						},
+						{
+							"key": "appId",
+							"value": "1234567890"
+						},
+						{
+							"key": "openId",
+							"value": "1234567890"
+						},
+						{
+							"key": "headImage",
+							"value": "http://thirdwx.qlogo.cn/mmopen/aVw4FZwqoeJSDVH5icmqCt4LTiaOnibnN8FCg0oZ3W5McXJA6hutGj29HpozgZAInDRmI5UXibLXibuFz6bA6ueO5Xk4vpgDTbaa5/132"
+						},
+						{
+							"key": "nickName",
+							"value": "王者荣耀"
+						},
+						{
+							"key": "province",
+							"value": "江西省"
+						},
+						{
+							"key": "city",
+							"value": "九江市"
+						},
+						{
+							"key": "district",
+							"value": "都昌县"
+						},
+						{
+							"key": "street",
+							"value": "蔡岭镇"
+						},
+						{
+							"key": "addressDetail",
+							"value": "慈济中学"
+						},
+						{
+							"key": "receivingNumber",
+							"value": "18357477862"
+						},
+						{
+							"key": "receivingName",
+							"value": "刘云凤"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取轮播图",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39efbbf1-0cd2-460f-a7f7-d3fcca9d68dd",
+						"exec": [
+							"pm.test(\"断言响应data中返回轮播图url\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"imageUrl\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/product/getBannerImage",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"product",
+						"getBannerImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询商品类目",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7c63c9e-f8c2-40f8-a648-95a461490c22",
+						"exec": [
+							"pm.test(\"断言响应data中包含categoryName\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"categoryName\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/product/getProductCategory",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"product",
+						"getProductCategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "分页查询商品",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af11d746-ceca-487c-aab8-71ca8ab62353",
+						"exec": [
+							"pm.test(\"断言响应data中包含productName\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"productName\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryId\":\"3\",\r\n    \"hot\":\"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/product/selectProductList",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"product",
+						"selectProductList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询商品详情",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ff6ae4b-5696-4634-888d-70bc67aca4f7",
+						"exec": [
+							"pm.test(\"断言响应data中包含productName\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"productName\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/product/selectProductDetail?productId=4",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"product",
+						"selectProductDetail"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "生成订单",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82bba255-fea0-4abe-b74a-317487063959",
+						"exec": [
+							"pm.test(\"断言响应返回message为恭喜兑换成功\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"恭喜兑换成功\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"province\":\"江西省哈哈\",\r\n    \"city\":\"九江市\",\r\n    \"district\":\"都昌县\",\r\n    \"street\":\"蔡岭镇\",\r\n    \"addressDetail\":\"慈济中学\",\r\n    \"receivingNumber\":\"18357477862\",\r\n    \"receivingName\":\"刘云凤辅导费的分\",\r\n    \"totalIntegral\":\"20\",\r\n    \"detailList\":[\r\n        {\r\n            \"productId\":4,\r\n            \"count\":2,\r\n            \"integral\":10\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/order/generateOrder?openId=1234567890&appId=1234567890",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"order",
+						"generateOrder"
+					],
+					"query": [
+						{
+							"key": "openId",
+							"value": "1234567890"
+						},
+						{
+							"key": "appId",
+							"value": "1234567890"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询我的兑换记录",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7998fda7-a824-4001-a697-e9bd405521bf",
+						"exec": [
+							"pm.test(\"断言响应data包含productName\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"productName\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wx.dev.qingxuanwenhua.com/shop-service-provider/miniP/user/getUserExchanesRecord?openId=1234567890",
+					"protocol": "http",
+					"host": [
+						"wx",
+						"dev",
+						"qingxuanwenhua",
+						"com"
+					],
+					"path": [
+						"shop-service-provider",
+						"miniP",
+						"user",
+						"getUserExchanesRecord"
+					],
+					"query": [
+						{
+							"key": "openId",
+							"value": "1234567890"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
